@@ -7,7 +7,7 @@ module.exports = {
 
 	//swiftcashd:{
 	//	host:"127.0.0.1",
-	//	port:9679,
+	//	port:8543,
 	//	rpc: {
 	//		username:"rpcusername",
 	//		password:"rpcpassword"
