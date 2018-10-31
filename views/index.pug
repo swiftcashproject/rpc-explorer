@@ -1,0 +1,31 @@
+extends layout
+
+block headContent
+	title Home
+	
+block content
+	h1 SwiftCash Explorer
+	hr
+
+	:markdown-it
+		**SwiftCash Explorer** is [open-source](https://github.com/swiftcashproject/rpc-explorer). If you run your own [SwiftCash Full Node](https://wallets.swiftcash.cc/), **SwiftCash Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://github.com/swiftcashproject/rpc-explorer) for a list of features and instructions for running.
+
+	
+	if (latestBlocks)
+		h3 Latest Blocks
+
+		- var blocks = latestBlocks;
+		- var blockOffset = 0;
+
+		include includes/blocks-list.pug
+
+		hr
+		a(href="/blocks", class="btn btn-primary btn-block") See more
+
+	hr
+
+	div(class="text-center")
+		:markdown-it
+			Source code available on github: [https://github.com/swiftcashproject/rpc-explorer](https://github.com/swiftcashproject/rpc-explorer)
+			
+			[&copy; 2018 www.swiftcash.cc](https://swiftcash.cc/)

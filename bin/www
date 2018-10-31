@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+var debug = require('debug')('my-application');
+var app = require('../app');
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
+
+// Https run
+/*
+const httpsOptions = {
+   cert: fs.readFileSync('/etc/letsencrypt/live/rpcexplorer.swiftcash.cc/fullchain.pem'),
+   key: fs.readFileSync('/etc/letsencrypt/live/rpcexplorer.swiftcash.cc/privkey.pem')
+}
+
+https.createServer(httpsOptions, app).listen(443, function() {
+   debug('Https/Express server listening on port 443');
+});
+
+// Forwarding http to https
+http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+}).listen(80);
+*/
+
+// Http run
+app.set('port', process.env.PORT || 8888);
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+
