@@ -115,7 +115,7 @@ block content
 				if (result.getrawtransaction.vin[0].coinbase)
 					tr
 						th(class="table-active properties-header") Total Network Fees
-						td(class="monospace") Σ #{new Decimal(totalOutputValue).minus(totalInputValue)}
+						td(class="monospace") ⚡ #{new Decimal(totalOutputValue).minus(totalInputValue)}
 				else
 					tr
 						th(class="table-active properties-header") Network Fee Paid
@@ -163,7 +163,7 @@ block content
 											td
 												span(class="tag monospace") coinbase
 												span(class="monospace") Newly minted SWIFT
-											td(class="monospace") Σ #{utils.getBlockReward(result.getblock.height)}
+											td(class="monospace") ⚡ #{utils.getBlockReward(result.getblock.height)}
 
 									each txInput, txInputIndex in result.txInputs
 										if (txInput)
@@ -182,13 +182,13 @@ block content
 														a(href=("/tx/" + txInput.txid + "#output-" + result.getrawtransaction.vin[txInputIndex].vout), class="monospace") #{txInput.txid.substring(0, 14)}..., Output ##{result.getrawtransaction.vin[txInputIndex].vout + 1}
 												td
 													if (vout.value)
-														span(class="monospace") Σ #{vout.value}
+														span(class="monospace") ⚡ #{vout.value}
 
 									tr
 										td
 										td
 										td
-											strong(class="monospace") Σ #{totalInputValue}
+											strong(class="monospace") ⚡ #{totalInputValue}
 								
 
 						div(class="col-md-6")
@@ -217,13 +217,13 @@ block content
 														span(class="monospace") OP_RETURN: 
 														span(class="monospace text-muted") #{utils.hex2ascii(vout.scriptPubKey.asm.substring("OP_RETURN ".length))}
 											td
-												span(class="monospace") Σ #{vout.value}
+												span(class="monospace") ⚡ #{vout.value}
 
 									tr
 										td
 										td
 										td
-											strong(class="monospace") Σ #{totalOutputValue}
+											strong(class="monospace") ⚡ #{totalOutputValue}
 
 		div(id="tab-scripts", class="tab-pane", role="tabpanel")
 			h3 Input Scripts

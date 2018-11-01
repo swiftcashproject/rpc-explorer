@@ -133,7 +133,7 @@ div(class="tab-content")
 												td
 													span(class="tag monospace") coinbase
 													span(class="monospace")  Newly minted SWIFT
-												td(class="monospace") 🗲 #{utils.getBlockReward(result.getblock.height)}
+												td(class="monospace") ⚡#{utils.getBlockReward(result.getblock.height)}
 
 										each txInput, txInputIndex in result.txInputsByTransaction[tx.txid]
 											if (txInput)
@@ -153,7 +153,7 @@ div(class="tab-content")
 													td
 														if (vout.value)
 															- totalInputValue = totalInputValue.plus(new Decimal(vout.value));
-															span(class="monospace") 🗲 #{vout.value}
+															span(class="monospace") ⚡#{vout.value}
 
 										- var coinbaseCount = tx.vin[0].coinbase ? 1 : 0;
 										if ((tx.vin.length - coinbaseCount) > result.txInputsByTransaction[tx.txid].length)
@@ -167,7 +167,7 @@ div(class="tab-content")
 												td
 												td
 												td
-													strong(class="monospace") 🗲 #{totalInputValue}
+													strong(class="monospace") ⚡#{totalInputValue}
 									
 
 							div(class="col-md-6")
@@ -198,14 +198,14 @@ div(class="tab-content")
 															span(class="monospace") OP_RETURN: 
 															span(class="monospace text-muted") #{utils.hex2ascii(vout.scriptPubKey.asm.substring("OP_RETURN ".length))}
 												td
-													span(class="monospace") 🗲 #{vout.value}
+													span(class="monospace") ⚡#{vout.value}
 													- totalOutputValue = totalOutputValue.plus(vout.value);
 
 										tr
 											td
 											td
 											td
-												strong(class="monospace") 🗲 #{totalOutputValue}
+												strong(class="monospace") ⚡#{totalOutputValue}
 					else if (result.getblock.height == 0)
 						table(class="table mb-0")
 							thead
