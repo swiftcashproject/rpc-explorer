@@ -24,11 +24,17 @@ block content
 					th(class="table-active properties-header") Protocol Version
 					td(class="monospace") #{getinfo.protocolversion}
 				tr
+					th(class="table-active properties-header") Wallet Version
+					td(class="monospace") #{getinfo.walletversion}
+				tr
 					th(class="table-active properties-header") Connections
 					td(class="monospace") #{getinfo.connections.toLocaleString()}
 				tr
 					th(class="table-active properties-header") Block Count
 					td(class="monospace") #{getinfo.blocks.toLocaleString()}
+				tr
+					th(class="table-active properties-header") Money Supply
+					td(class="monospace") #{getinfo.moneysupply.toLocaleString()}
 				tr
 					th(class="table-active properties-header") Testnet?
 					td(class="monospace") #{getinfo.testnet}
