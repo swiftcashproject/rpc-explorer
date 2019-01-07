@@ -6,10 +6,9 @@ block headContent
 		.field {
 			word-wrap: break-word;
 		}
-		
 
 block content
-	h1(class="h2") Transaction
+	h1(class="h2 block__td") Transaction
 		br
 		small(class="monospace") #{txid}
 	hr
@@ -48,7 +47,7 @@ block content
 			table(class="table")
 				tr
 					th(class="table-active properties-header") Included in Block
-					td(class="monospace")
+					td(class="monospace block__td")
 						if (result.getblock)
 							a(href=("/block/" + result.getrawtransaction.blockhash)) #{result.getrawtransaction.blockhash}
 							if (result.getblock.height)
@@ -56,55 +55,55 @@ block content
 						else
 							span N/A
 							span(class="text-muted")  (unconfirmed)
-				
+
 				tr
 					th(class="table-active properties-header") Timestamp
 					if (result.getrawtransaction.time)
-						td(class="monospace") #{moment.utc(new Date(result.getrawtransaction["time"] * 1000)).format("Y-MM-DD HH:mm:ss")} (utc)
+						td(class="monospace block__td") #{moment.utc(new Date(result.getrawtransaction["time"] * 1000)).format("Y-MM-DD HH:mm:ss")} (utc)
 					else
-						td(class="monospace") N/A
+						td(class="monospace block__td") N/A
 							span(class="text-muted")  (unconfirmed)
-				
+
 				//tr
 				//	th(class="table-active properties-header") Transaction ID
 				//	td #{txid}
-				
+
 				tr
 					th(class="table-active properties-header") Version
-					td(class="monospace") #{result.getrawtransaction.version}
-				
+					td(class="monospace block__td") #{result.getrawtransaction.version}
+
 				tr
 					th(class="table-active properties-header") Size
-					td(class="monospace")
+					td(class="monospace block__td")
 						span #{result.getrawtransaction.size} bytes
 						if (result.getrawtransaction.vsize != result.getrawtransaction.size)
 							span  (
 							a(href="https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#Transaction_size_calculations") virtual size
 							span : #{result.getrawtransaction.size.toLocaleString()} bytes)
-				
+
 				if (result.getrawtransaction.locktime > 0)
 					tr
 						th(class="table-active properties-header")
 							span Locktime
-						td(class="monospace")
+						td(class="monospace block__td")
 							if (result.getrawtransaction.locktime < 500000000)
-								span Spendable in block 
+								span Spendable in block
 								a(href=("/block-height/" + result.getrawtransaction.locktime)) #{result.getrawtransaction.locktime}
 								span  or later - (
 								a(href="https://bitcoin.org/en/developer-guide#locktime-and-sequence-number", title="Locktime documentation")
-									span docs 
+									span docs
 									i(class="fa fa-external-link")
 								span )
 							else
 								span Spendable after #{moment.utc(new Date(result.getrawtransaction.locktime * 1000)).format("Y-MM-DD HH:mm:ss")} (utc) - (
 								a(href="https://bitcoin.org/en/developer-guide#locktime-and-sequence-number", title="Locktime documentation")
-									span docs 
+									span docs
 									i(class="fa fa-external-link")
 								span )
 
 				tr
 					th(class="table-active properties-header") Confirmations
-					td(class="monospace")
+					td(class="monospace block__td")
 						if (!result.getrawtransaction.confirmations || result.getrawtransaction.confirmations == 0)
 							strong(class="text-danger") 0 (unconfirmed)
 						else if (result.getrawtransaction.confirmations < 6)
@@ -115,11 +114,11 @@ block content
 				if (result.getrawtransaction.vin[0].coinbase)
 					tr
 						th(class="table-active properties-header") Total Network Fees
-						td(class="monospace") ⚡ #{new Decimal(totalOutputValue).minus(totalInputValue)}
+						td(class="monospace block__td") ⚡ #{new Decimal(totalOutputValue).minus(totalInputValue)}
 				else
 					tr
 						th(class="table-active properties-header") Network Fee Paid
-						td(class="monospace")
+						td(class="monospace block__td")
 							strong #{new Decimal(totalInputValue).minus(totalOutputValue)}
 							span(class="text-muted")  (#{totalInputValue} - #{totalOutputValue})
 							br
@@ -132,18 +131,18 @@ block content
 					div(class="card-body")
 						h6 Hex
 						div(style="background-color: #fafafa; padding: 5px 10px;", class="mb-3")
-							span(class="monospace word-wrap") #{result.getrawtransaction.vin[0].coinbase}
+							span(class="monospace block__td word-wrap") #{result.getrawtransaction.vin[0].coinbase}
 
 						h6 Decoded
 						div(style="background-color: #fafafa; padding: 5px 10px;", class="mb-3")
-							span(class="monospace word-wrap") #{utils.hex2ascii(result.getrawtransaction.vin[0].coinbase)}
+							span(class="monospace block__td word-wrap") #{utils.hex2ascii(result.getrawtransaction.vin[0].coinbase)}
 
 			div(class="card mb-3")
 				div(class="card-header")
 					div(class="row")
 						div(class="col-md-6")
 							h2(class="h5 mb-0") Input (#{result.getrawtransaction.vin.length.toLocaleString()})
-						div(class="col-md-6") 
+						div(class="col-md-6")
 							h2(class="h5 mb-0") Output (#{result.getrawtransaction.vout.length.toLocaleString()})
 				div(class="card-body")
 					div(class="row")
@@ -156,7 +155,7 @@ block content
 											th Input
 											th Amount
 									tbody
-									
+
 									if (result.getrawtransaction.vin[0].coinbase)
 										tr
 											th 1
@@ -178,7 +177,7 @@ block content
 													if (vout.scriptPubKey && vout.scriptPubKey.addresses)
 														span(class="monospace") #{vout.scriptPubKey.addresses[0]}
 														br
-														span(class="monospace text-muted") via tx 
+														span(class="monospace text-muted") via tx
 														a(href=("/tx/" + txInput.txid + "#output-" + result.getrawtransaction.vin[txInputIndex].vout), class="monospace") #{txInput.txid.substring(0, 14)}..., Output ##{result.getrawtransaction.vin[txInputIndex].vout + 1}
 												td
 													if (vout.value)
@@ -189,7 +188,7 @@ block content
 										td
 										td
 											strong(class="monospace") ⚡ #{totalInputValue}
-								
+
 
 						div(class="col-md-6")
 							table(class="table mb-0")
@@ -210,11 +209,11 @@ block content
 															span(class="monospace") #{vout.scriptPubKey.addresses[0]}
 
 													else if (vout.scriptPubKey.hex && vout.scriptPubKey.hex.startsWith('6a24aa21a9ed'))
-														span(class="monospace") Segregated Witness committment - 
+														span(class="monospace") Segregated Witness committment -
 														a(href="https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure") docs
 															i(class="fa fa-external-link")
 													else if (vout.scriptPubKey.asm && vout.scriptPubKey.asm.startsWith('OP_RETURN '))
-														span(class="monospace") OP_RETURN: 
+														span(class="monospace") OP_RETURN:
 														span(class="monospace text-muted") #{utils.hex2ascii(vout.scriptPubKey.asm.substring("OP_RETURN ".length))}
 											td
 												span(class="monospace") ⚡ #{vout.value}
@@ -272,4 +271,4 @@ block content
 
 			//pre #{JSON.stringify(result.txInputs, null, 4)}
 
-	
+
