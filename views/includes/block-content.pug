@@ -131,9 +131,9 @@ div(class="tab-content")
 											tr
 												th 1
 												td
-													span(class="tag monospace block__td") coinbase
-													span(class="monospace block__td")  Newly minted SWIFT
-												td(class="monospace block__td") ⚡ #{utils.getBlockReward(result.getblock.height)}
+													span(class="tag monospace ") coinbase
+													span(class="monospace ")  Newly minted SWIFT
+												td(class="monospace ") ⚡ #{utils.getBlockReward(result.getblock.height)}
 
 										each txInput, txInputIndex in result.txInputsByTransaction[tx.txid]
 											if (txInput)
@@ -146,28 +146,28 @@ div(class="tab-content")
 
 													td
 														if (vout.scriptPubKey && vout.scriptPubKey.addresses)
-															span(class="monospace block__td") #{vout.scriptPubKey.addresses[0]}
+															span(class="monospace ") #{vout.scriptPubKey.addresses[0]}
 															br
-															span(class="monospace block__td text-muted") via tx
-															a(href=("/tx/" + txInput.txid + "#output-" + tx.vin[txInputIndex].vout), class="monospace block__td") #{txInput.txid.substring(0, 14)}..., Output ##{tx.vin[txInputIndex].vout + 1}
+															span(class="monospace  text-muted") via tx
+															a(href=("/tx/" + txInput.txid + "#output-" + tx.vin[txInputIndex].vout), class="monospace ") #{txInput.txid.substring(0, 14)}..., Output ##{tx.vin[txInputIndex].vout + 1}
 													td
 														if (vout.value)
 															- totalInputValue = totalInputValue.plus(new Decimal(vout.value));
-															span(class="monospace block__td") ⚡ #{vout.value}
+															span(class="monospace ") ⚡ #{vout.value}
 
 										- var coinbaseCount = tx.vin[0].coinbase ? 1 : 0;
 										if ((tx.vin.length - coinbaseCount) > result.txInputsByTransaction[tx.txid].length)
 											tr
 												td
 												td
-													span(class="monospace block__td text-muted") #{(tx.vin.length - result.txInputsByTransaction[tx.txid].length).toLocaleString()} more...
+													span(class="monospace  text-muted") #{(tx.vin.length - result.txInputsByTransaction[tx.txid].length).toLocaleString()} more...
 												td
 										else
 											tr
 												td
 												td
 												td
-													strong(class="monospace block__td") ⚡ #{totalInputValue}
+													strong(class="monospace ") ⚡ #{totalInputValue}
 
 
 							div(class="col-md-6")
@@ -188,24 +188,24 @@ div(class="tab-content")
 													if (vout.scriptPubKey)
 														if (vout.scriptPubKey.addresses)
 															a(id="output-" + voutIndex)
-																span(class="monospace block__td") #{vout.scriptPubKey.addresses[0]}
+																span(class="monospace ") #{vout.scriptPubKey.addresses[0]}
 
 														else if (vout.scriptPubKey.hex && vout.scriptPubKey.hex.startsWith('6a24aa21a9ed'))
-															span(class="monospace block__td") Segregated Witness committment -
+															span(class="monospace ") Segregated Witness committment -
 															a(href="https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure") docs
 																i(class="fa fa-external-link")
 														else if (vout.scriptPubKey.asm && vout.scriptPubKey.asm.startsWith('OP_RETURN '))
-															span(class="monospace block__td") OP_RETURN:
-															span(class="monospace block__td text-muted") #{utils.hex2ascii(vout.scriptPubKey.asm.substring("OP_RETURN ".length))}
+															span(class="monospace ") OP_RETURN:
+															span(class="monospace  text-muted") #{utils.hex2ascii(vout.scriptPubKey.asm.substring("OP_RETURN ".length))}
 												td
-													span(class="monospace block__td") ⚡ #{vout.value}
+													span(class="monospace ") ⚡ #{vout.value}
 													- totalOutputValue = totalOutputValue.plus(vout.value);
 
 										tr
 											td
 											td
 											td
-												strong(class="monospace block__td") ⚡ #{totalOutputValue}
+												strong(class="monospace ") ⚡ #{totalOutputValue}
 					else if (result.getblock.height == 0)
 						table(class="table mb-0")
 							thead
