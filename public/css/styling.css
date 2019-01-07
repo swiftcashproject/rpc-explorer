@@ -24,7 +24,7 @@ a:hover {
 	background-color: #68e4ff;
 }
 
-thead { 
+thead {
 	background-color: #00a9e1!important;
 }
 
@@ -173,4 +173,35 @@ code, .monospace {
 	padding: .25rem 0.75rem;
 	font-size: 1.0rem;
 	line-height: 1.5;
+}
+
+
+/* codeflyin */
+
+.table{
+	table-layout: fixed;
+}
+.block__th{
+	width: 40%;
+}
+.block__td{
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* brackpoint */
+
+/* Small devices (landscape phones, 576px and down) */
+@media (max-width: 576px) {
+	.responsive_false {
+		display: none;
+	}
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+	.responsive_true{
+		display: none;
+	}
 }
