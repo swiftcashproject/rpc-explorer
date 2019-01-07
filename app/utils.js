@@ -42,7 +42,7 @@ function getBlockReward(blockHeight) {
 	else if(blockHeight <= 200) return 0;
 	else if(blockHeight <= 10000) return 10;
 	else {
-	   return Math.floor(0.5+((1200 * 525600)/(8*525600 + nHeight - 10000 + 1)));
+	   return Math.floor(0.5+((1200 * 525600)/(8*525600 + blockHeight - 10000 + 1)));
 	}
 }
 
