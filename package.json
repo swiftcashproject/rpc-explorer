@@ -12,7 +12,7 @@
     "bitcoin": "3.0.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
-    "crypto-js": "3.1.9-1",
+    "crypto-js": "4.2.0",
     "debug": "~2.6.0",
     "decimal.js": "7.2.3",
     "express": "^4.16.4",
